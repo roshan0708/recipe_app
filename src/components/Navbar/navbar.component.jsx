@@ -6,8 +6,8 @@ import { faFacebook, faInstagram, faPinterest, faDribbble } from "@fortawesome/f
 const Navbar = () => {
     return (
       <nav className="sticky-nav">
-        <h3 className="brand-name">Eatify</h3>
-        <ul class="main-nav">
+        <h3 className="brand-name">Eatify ✔</h3>
+        <ul className="main-nav">
           <li>
             <FontAwesomeIcon icon={faFacebook} />
           </li>
