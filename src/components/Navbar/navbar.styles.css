@@ -1,0 +1,31 @@
+.sticky-nav{
+    position: fixed;
+    display: flex;
+    top:0;
+    width:100%;
+    background: rgba(247,247,247,0.9);
+}
+
+.sticky-nav .brand-name{
+    margin-left: 100px;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+.main-nav{
+    display: flex;
+    list-style: none;
+    font-size: 0.7em;
+    margin:0 50px 0 auto;
+}
+
+.main-nav li{
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 20px;
+}
+
+.main-nav li:hover,.sticky-nav .brand-name:hover{
+    color: rgb(110, 168, 22);
+}
