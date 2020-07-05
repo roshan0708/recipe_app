@@ -1,0 +1,21 @@
+.cover-text{
+    position: relative;
+    bottom: 65%;
+    left: 35%;
+    background: rgba(247,247,247,0.7);
+    width:350px;
+    height:fit-content;
+}
+
+.cover-text .heading-text{
+    text-align: center;
+    font-size: 1.9rem;
+    padding: 20px 20px 0 20px;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+.cover-text .para-text{
+    font-size: 17px;
+    padding: 0 20px 20px 20px;
+    font-family: 'PT Sans', sans-serif;
+}

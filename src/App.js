@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import Cover from "./components/Cover/cover.component";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      Hello World
+      <Cover/>
     </div>
   );
 }
