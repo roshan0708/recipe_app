@@ -2,6 +2,8 @@ import React,{ useState, useEffect } from "react";
 import "./search-card.styles.css";
 import Recipe from "../Recipe/recipe.component";
 import FoodData from "../FoodData/foodData.component";
+import Pagination from "../Pagination/pagination.component";
+import PaginationFood from "../Pagination/pagination-food.component";
 
 const SearchCard = () => {
 
@@ -14,22 +16,47 @@ const SearchCard = () => {
     const [foodData, setFoodData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [currentPageFood, setCurrentPageFood] = useState(1);
+    const [itemsPerPage] = useState(5);
     const [search, setSearch] = useState("");
     const [query, setQuery] = useState("");
-    // const [currentRecipeItems,setCurrentRecipeItems] = useState([]);
-    // const [currentFoodDataItems, setCurrentFoodDataItems] = useState([]);
+    const [currentRecipeItems,setCurrentRecipeItems] = useState([]);
+    const [currentFoodDataItems, setCurrentFoodDataItems] = useState([]);
 
     const recipeUrl = `https://api.edamam.com/search?q=${query}&app_id=${recipe_app_id}&app_key=${recipe_app_key}`;
     const foodDataUrl =`https://api.edamam.com/api/food-database/v2/parser?ingr=${query}&app_id=${food_app_id}&app_key=${food_app_key}`;
+
+    //Get Current Item of Recipe
+    const indexofLastRecipe = currentPage * itemsPerPage;
+    const indexOfFirstRecipe = indexofLastRecipe - itemsPerPage;
+
+    //Get Current Item of Food Database
+    const indexofLastFood = currentPageFood * itemsPerPage;
+    const indexOfFirstFood = indexofLastFood - itemsPerPage;
+
     useEffect(() => {
         getFoodData();
     },[query]);
+
+    useEffect(() => {
+      if(typeof recipes !== "undefined"){
+        setCurrentRecipeItems(recipes.slice(indexOfFirstRecipe, indexofLastRecipe));
+      }
+    }, [currentPage,recipes]);
 
     useEffect(()=>{
         getRecipes();
     },[query]);
 
+    useEffect(() => {
+      if (typeof foodData !== "undefined") {
+        setCurrentFoodDataItems(
+          foodData.slice(indexOfFirstFood, indexofLastFood)
+        );
+      }
+    }, [currentPageFood,foodData]);
+
+    //Get request for Recipe
     const getRecipes = async () => {
         setLoading(true);
         const response = await fetch(recipeUrl);
@@ -39,6 +66,7 @@ const SearchCard = () => {
         setLoading(false);
     };
 
+    //Get request for Food Database
     const getFoodData = async () => {
       setLoading(true);
       const response = await fetch(foodDataUrl);
@@ -48,33 +76,32 @@ const SearchCard = () => {
       setLoading(false);
     };
 
+    //Input-bar Value Change
     const handleChange = e => {
         setSearch(e.target.value);
     }
 
+    //Form Submit
     const handleSubmit = e => {
         e.preventDefault();
         setQuery(search);
         setSearch("");
     }
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    // if (typeof foodData!=="undefined"){
-    //     setCurrentFoodDataItems(foodData.slice(indexOfFirstItem, indexOfLastItem));
-    // }
-    // if (typeof recipes!== "undefined") {
-    //   setCurrentRecipeItems(recipes.slice(indexOfFirstItem, indexOfLastItem));
-    // }
-    
+    //Change Recipe Page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+    //Change Food Database Page
+    const paginateFood = (pageNumber) => setCurrentPageFood(pageNumber);
+    
     return (
       <div id="search-card">
         <h3 className="search-card-title">
           Food Cravings? Can't Decide What to Cook?
         </h3>
         <p className="search-card-text">
-          Well You're just one search away from a wide range of collection of food recipes as per your choice!!
+          Well You're just one search away from a wide range of collection of
+          food recipes as per your choice!!
           <span role="img" aria-label="emoji">
             {" "}
             😋
@@ -92,18 +119,26 @@ const SearchCard = () => {
             Search
           </button>
         </form>
-            { 
-              !recipes.length ? (
-                <h2 style={{ color: "rgb(74, 172, 18)",marginTop:"70px"}}>
-                No contents selected yet.....
-                </h2>
-                ) : (
-                <div>
-                    <Recipe recipes={recipes} loading={loading}/>
-                    <FoodData foodData={foodData} loading={loading} />
-                </div>
-                )
-            }
+        {!recipes.length ? (
+          <h2 style={{ color: "rgb(74, 172, 18)", marginTop: "70px" }}>
+            No contents selected yet.....
+          </h2>
+        ) : (
+          <div>
+            <Recipe recipes={currentRecipeItems} loading={loading} />
+            <Pagination
+              itemsPerPage={itemsPerPage}
+              totalItems={recipes.length}
+              paginate={paginate}
+            />
+            <FoodData foodData={currentFoodDataItems} loading={loading} />
+            <PaginationFood
+              itemsPerPage={itemsPerPage}
+              totalItems={foodData.length}
+              paginateFood={paginateFood}
+            />
+          </div>
+        )}
       </div>
     );
 }

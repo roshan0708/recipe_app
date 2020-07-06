@@ -1,0 +1,19 @@
+.pagination-nav .pagination{
+    list-style: none;
+    display:flex;
+    justify-content: center;
+}
+
+.pagination-nav .pagination .page-item{
+    width: 30px;
+    height: 28px;
+    padding:10px 2px 2px 2px;
+    border: 1px solid;
+}
+
+.pagination-nav .pagination .page-link{
+    cursor: pointer;
+    font-weight: 600;
+    color: #1572e8;
+    text-decoration: none;
+}
