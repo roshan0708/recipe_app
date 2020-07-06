@@ -1,0 +1,19 @@
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width:100vw;
+    padding:0;
+    margin:0;
+    height:max-content;
+    background-color: rgb(74, 172, 18);
+}
+
+.footer p{
+    font-size: 1.2rem;
+    color:#fff;
+}
+
+.footer p span{
+    color:rgb(194, 11, 11);
+}

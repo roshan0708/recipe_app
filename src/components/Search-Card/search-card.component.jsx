@@ -17,8 +17,8 @@ const SearchCard = () => {
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [search, setSearch] = useState("");
     const [query, setQuery] = useState("");
-    const [currentRecipeItems,setCurrentRecipeItems] = useState([]);
-    const [currentFoodDataItems, setCurrentFoodDataItems] = useState([]);
+    // const [currentRecipeItems,setCurrentRecipeItems] = useState([]);
+    // const [currentFoodDataItems, setCurrentFoodDataItems] = useState([]);
 
     const recipeUrl = `https://api.edamam.com/search?q=${query}&app_id=${recipe_app_id}&app_key=${recipe_app_key}`;
     const foodDataUrl =`https://api.edamam.com/api/food-database/v2/parser?ingr=${query}&app_id=${food_app_id}&app_key=${food_app_key}`;
