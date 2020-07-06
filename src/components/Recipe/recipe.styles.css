@@ -1,0 +1,80 @@
+table { 
+	width: 750px; 
+	border-collapse: collapse; 
+	margin:50px auto;
+    }
+
+.recipe-table-div{
+    margin-top:50px;
+}
+    
+.recipe-image{
+    width: 60px;
+    height:auto;
+}
+
+tr:nth-of-type(odd) { 
+    background: #eee; 
+	}
+
+th { 
+	background: rgb(74, 172, 18); 
+    color: white; 
+    font-family: "PT Sans Narrow",sans-serif;
+    font-size: 1.4rem !important;
+	font-weight: bold; 
+	}
+
+td, th { 
+	padding: 10px; 
+	border: 1px solid #ccc; 
+	text-align: left; 
+	font-size: 18px;
+    }
+    
+td{
+    font-family: "PT Sans",sans-serif !important; 
+}
+
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	table { 
+	  	width: 100%; 
+    }
+
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+
+	td:before { 
+        font-family: "PT Sans",sans-serif;
+		position: absolute;
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		content: attr(data-column);
+
+		color: #000;
+		font-weight: bold;
+	}
+
+}
