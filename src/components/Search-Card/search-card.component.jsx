@@ -61,7 +61,6 @@ const SearchCard = () => {
         setLoading(true);
         const response = await fetch(recipeUrl);
         const data = await response.json();
-        console.log(data.hits);
         setRecipes(data.hits);
         setLoading(false);
     };
@@ -71,7 +70,6 @@ const SearchCard = () => {
       setLoading(true);
       const response = await fetch(foodDataUrl);
       const data = await response.json();
-      console.log(data.hints);
       setFoodData(data.hints);
       setLoading(false);
     };

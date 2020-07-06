@@ -1,6 +1,7 @@
 .pagination-nav .pagination{
     list-style: none;
     display:flex;
+    padding-left: 0;
     justify-content: center;
 }
 

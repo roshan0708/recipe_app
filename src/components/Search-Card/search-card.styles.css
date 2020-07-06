@@ -53,6 +53,10 @@
     font-family: 'PT Sans',sans-serif;
 }
 
+#search-card .search-form .search-button:hover{
+    background-color: rgb(85, 136, 9) ;
+}
+
 #search-card .search-form .search-button:focus{
     outline: none;
 }

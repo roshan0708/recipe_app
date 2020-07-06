@@ -30,3 +30,32 @@
 .main-nav li:hover,.sticky-nav .brand-name:hover{
     color: rgb(110, 168, 22);
 }
+
+@media screen and (max-width:426px){
+    .sticky-nav{
+        display:-webkit-inline-box;
+    }
+
+    .sticky-nav .brand-name{
+        margin-left: 10px;
+        font-size: 1rem;
+    }
+
+    .main-nav li{
+        font-size: 1rem;
+        margin-right: 15px;
+    }
+}
+
+@media screen and (max-width:321px){
+
+    .sticky-nav .brand-name{
+        margin-left: 10px;
+        font-size: 1rem;
+    }
+
+    .main-nav li{
+        font-size: 1rem;
+        margin-right: 0;
+    }
+}

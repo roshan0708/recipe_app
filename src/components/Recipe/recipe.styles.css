@@ -7,6 +7,14 @@ table {
 .recipe-table-div{
     margin-top:50px;
 }
+
+.select-form-control{
+	border-radius: 5px;
+    width: fit-content;
+	height: 25px;
+	font-size: 0.9rem;
+	font-family: "PT Sans",sans-serif;
+}
     
 .recipe-image{
     width: 60px;

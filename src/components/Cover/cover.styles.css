@@ -21,6 +21,10 @@
     animation:bounce 1s infinite;
 }
 
+.cover .arrow-down:hover{
+    color: rgb(110, 168, 22);
+}
+
 @keyframes bounce {
       0%       { bottom:5px; }
       25%, 75% { bottom:15px; }

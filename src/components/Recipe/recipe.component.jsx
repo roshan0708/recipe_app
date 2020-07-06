@@ -3,13 +3,38 @@ import "./recipe.styles.css";
 import UnavailableImg from "../../assets/img/unavailable.png";
 
 const Recipe = ({recipes, loading}) => {
+
+    const recipeFilter = () => {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("recipe-filter");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("recipe-table");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[5];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+
     if(loading){
         return <h3 style={{ marginTop: "50px" }}>Loading...</h3>;
     }
     return (
       <div className="recipe-table-div">
         <h2>Recipe Database</h2>
-        <table>
+        <select id="recipe-filter" onChange={recipeFilter} className="select-form-control">
+          <option>High Protein</option>
+          <option>Balanced</option>
+          <option>High Carb</option>
+          <option>Regular</option>
+        </select>
+        <table id="recipe-table">
           <thead>
             <tr>
               <th>Title</th>
@@ -22,19 +47,23 @@ const Recipe = ({recipes, loading}) => {
           </thead>
           <tbody>
             {recipes.map((recipe) => {
-              const protein = recipe.recipe.totalNutrients.PROCNT.quantity.toFixed(2);
-              const carbs = recipe.recipe.totalNutrients.CHOCDF.quantity.toFixed(2);
+              const protein = recipe.recipe.totalNutrients.PROCNT.quantity.toFixed(
+                2
+              );
+              const carbs = recipe.recipe.totalNutrients.CHOCDF.quantity.toFixed(
+                2
+              );
               const fats = recipe.recipe.totalNutrients.FAT.quantity.toFixed(2);
               const total = protein + fats + carbs;
               let label = "";
-              if(protein/total > 15){
-                  label = "High Protein";
-              } else if(protein/total >= 12 && protein/total <= 15){
-                  label = "Balanced";
-              } else if((carbs+fats)/total > 50){
-                  label = "High Carb";
+              if (protein / total > 15) {
+                label = "High Protein";
+              } else if (protein / total >= 12 && protein / total <= 15) {
+                label = "Balanced";
+              } else if ((carbs + fats) / total > 50) {
+                label = "High Carb";
               } else {
-                  label = "Regular";
+                label = "Regular";
               }
               return (
                 <tr key={recipe.recipe.url}>
